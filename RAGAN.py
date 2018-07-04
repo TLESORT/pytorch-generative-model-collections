@@ -193,9 +193,7 @@ class RGAN(object):
 
                 y_pred_fake=y_pred_fake.view(x_.size(0))
                 y_pred=y_pred.view(x_.size(0))
-
-                #y2.data.resize_(current_batch_size).fill_(0)
-
+                
                 # No activation in generator
                 BCE_stable = torch.nn.BCEWithLogitsLoss()
 

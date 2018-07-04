@@ -173,9 +173,6 @@ class RGAN(object):
                 else:
                     x_, z_ = Variable(x_), Variable(z_)
 
-
-                ##################################################
-
                 for p in self.D.parameters():
                     p.requires_grad = True
 
@@ -189,18 +186,16 @@ class RGAN(object):
 
 
 
-                y_pred_fake = self.D(fake.detach())  # For generator step do not detach
+                y_pred_fake = self.D(fake.detach())
 
                 y_pred_fake=y_pred_fake.view(x_.size(0))
                 y_pred=y_pred.view(x_.size(0))
-
-                #y2.data.resize_(current_batch_size).fill_(0)
 
                 # No activation in generator
                 BCE_stable = torch.nn.BCEWithLogitsLoss()
 
                 # Discriminator loss
-                D_loss = BCE_stable(y_pred - y_pred_fake, self.y_real_) # it was, I changed it to ...
+                D_loss = BCE_stable(y_pred - y_pred_fake, self.y_real_)
                 D_loss.backward()
 
                 self.D_optimizer.step()
