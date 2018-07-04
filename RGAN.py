@@ -35,7 +35,7 @@ class generator(nn.Module):
             nn.BatchNorm2d(64),
             nn.ReLU(),
             nn.ConvTranspose2d(64, self.output_dim, 4, 2, 1),
-            nn.Sigmoid(),
+            #nn.Sigmoid(),
         )
         utils.initialize_weights(self)
 
@@ -74,7 +74,7 @@ class discriminator(nn.Module):
             nn.BatchNorm1d(1024),
             nn.LeakyReLU(0.2),
             nn.Linear(1024, self.output_dim),
-            #nn.Sigmoid(),
+            nn.Sigmoid(),
         )
         utils.initialize_weights(self)
 
