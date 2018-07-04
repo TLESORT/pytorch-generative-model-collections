@@ -5,6 +5,7 @@ from LSGAN import LSGAN
 from DRAGAN import DRAGAN
 from ACGAN import ACGAN
 from WGAN import WGAN
+from RGAN import RGAN
 from WGAN_GP import WGAN_GP
 from infoGAN import infoGAN
 from EBGAN import EBGAN
@@ -16,7 +17,7 @@ def parse_args():
     parser = argparse.ArgumentParser(description=desc)
 
     parser.add_argument('--gan_type', type=str, default='EBGAN',
-                        choices=['GAN', 'CGAN', 'infoGAN', 'ACGAN', 'EBGAN', 'BEGAN', 'WGAN', 'WGAN_GP', 'DRAGAN', 'LSGAN'],
+                        choices=['GAN', 'CGAN', 'infoGAN', 'ACGAN', 'EBGAN', 'BEGAN', 'WGAN', 'WGAN_GP', 'DRAGAN', 'LSGAN', 'RGAN', 'RAGAN'],
                         help='The type of GAN')#, required=True)
     parser.add_argument('--dataset', type=str, default='mnist', choices=['mnist', 'fashion-mnist', 'celebA'],
                         help='The name of dataset')
@@ -84,6 +85,10 @@ def main():
         gan = EBGAN(args)
     elif args.gan_type == 'WGAN':
         gan = WGAN(args)
+    elif args.gan_type == 'RGAN':
+        gan = RGAN(args)
+    elif args.gan_type == 'RAGAN':
+        gan = RGAN(args)
     elif args.gan_type == 'WGAN_GP':
         gan = WGAN_GP(args)
     elif args.gan_type == 'DRAGAN':
